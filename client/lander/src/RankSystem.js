@@ -1,18 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate, NavLink } from "react-router-dom";
 
-function doit() 
-{
-    try {
-        const response = Axios.post("http://127.0.0.1:5000/api/logout/");
-        console.log(response.data);
-        alert("Logged out successfully!");
-    } catch (error) {
-        console.log(formData);
-        console.error(error.response ? error.response.data : error.message);
-        alert("Error!");
-    }    
-}
+
 
 const RankSystem = () => {
     const [formData, setFormData] = useState({
@@ -21,6 +11,22 @@ const RankSystem = () => {
     });
     const [rank, setRank] = useState([]);
     const [error, setError] = useState("");
+
+    const navigate = useNavigate();
+
+    function Doit() 
+{
+    try {
+        const response = axios.post("http://127.0.0.1:5000/api/logout/");
+        console.log(response.data);
+        navigate('/');
+        alert("Logged out successfully!");
+    } catch (error) {
+        // console.log(formData);
+        console.error(error.response ? error.response.data : error.message);
+        alert("Error!");
+    }    
+}
 
     // Function to format the date to 'dd-MM-yyyy'
     const formatDate = (date) => {
@@ -115,7 +121,7 @@ const RankSystem = () => {
                     <p>No rankings available for the selected date range.</p>
                 )
             )}
-            <button onClick={doit}>Logout</button>
+            <button onClick={Doit}>Logout</button>
         </div>
     );
 };

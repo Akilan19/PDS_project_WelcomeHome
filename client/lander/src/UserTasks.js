@@ -1,18 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate, NavLink } from "react-router-dom";
 
-function doit() 
-{
-    try {
-        const response = Axios.post("http://127.0.0.1:5000/api/logout/");
-        console.log(response.data);
-        alert("Logged out successfully!");
-    } catch (error) {
-        console.log(formData);
-        console.error(error.response ? error.response.data : error.message);
-        alert("Error!");
-    }    
-}
 
 const UserTasks = () => {
   const [orders, setOrders] = useState([]);
@@ -33,6 +22,20 @@ const UserTasks = () => {
         }
     }
     };
+    const navigate = useNavigate();
+    function Doit() 
+{
+    try {
+        const response = axios.post("http://127.0.0.1:5000/api/logout/");
+        console.log(response.data);
+        navigate('/');
+        alert("Logged out successfully!");
+    } catch (error) {
+        // console.log(formData);
+        console.error(error.response ? error.response.data : error.message);
+        alert("Error!");
+    }    
+}
   return (
     <div>
         <h1>User's Tasks</h1>
@@ -48,7 +51,7 @@ const UserTasks = () => {
             ))
         )}
         {error && <p>{error}</p>}
-        <button onClick={doit}>Logout</button>
+        <button onClick={Doit}>Logout</button>
     </div>
 );
 };

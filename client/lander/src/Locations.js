@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const ItemLocations = () => {
     const [itemID, setItemID] = useState(""); // State for ItemID input
@@ -30,14 +31,16 @@ const ItemLocations = () => {
         }
     };
 
-    function doit() 
+    function Doit() 
 {
+  const navigate = useNavigate();
     try {
         const response = Axios.post("http://127.0.0.1:5000/api/logout/");
         console.log(response.data);
+        navigate('/')
         alert("Logged out successfully!");
     } catch (error) {
-        console.log(formData);
+        // console.log(formData);
         console.error(error.response ? error.response.data : error.message);
         alert("Error!");
     }    
@@ -86,7 +89,7 @@ const ItemLocations = () => {
                     </table>
                 </div>
             )}
-            <button onClick={doit}>Logout</button>
+            <button onClick={Doit}>Logout</button>
         </div>
     );
 };

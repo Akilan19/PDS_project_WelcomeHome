@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useNavigate, NavLink } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 const Inventory = () => {
@@ -30,18 +31,20 @@ const Inventory = () => {
     }
   };
 
-  function doit() 
-{
-    try {
-        const response = Axios.post("http://127.0.0.1:5000/api/logout/");
-        console.log(response.data);
-        alert("Logged out successfully!");
-    } catch (error) {
-        console.log(formData);
-        console.error(error.response ? error.response.data : error.message);
-        alert("Error!");
-    }    
-}
+//   function Doit() 
+// {
+//   const navigate = useNavigate();
+//     try {
+//         const response = axios.post("http://127.0.0.1:5000/api/logout/");
+//         console.log(response.data);
+//         navigate('/')
+//         alert("Logged out successfully!");
+//     } catch (error) {
+//         // console.log(formData);
+//         console.error(error.response ? error.response.data : error.message);
+//         alert("Error!");
+//     }    
+// }
 
   return (
     <div>
@@ -82,7 +85,7 @@ const Inventory = () => {
                             ))}
                         </tbody>
                     </table>
-                    <button onClick={doit}>Logout</button>
+                    {/* <button onClick={Doit}>Logout</button> */}
     </div>
   );
 };

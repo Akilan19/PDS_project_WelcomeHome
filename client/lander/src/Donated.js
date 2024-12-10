@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const DonationForm = () => {
     const [formData, setFormData] = useState({
@@ -78,14 +79,16 @@ const DonationForm = () => {
         }
     };
 
-    function doit() 
+    function Doit() 
 {
+  const navigate = useNavigate();
     try {
         const response = Axios.post("http://127.0.0.1:5000/api/logout/");
         console.log(response.data);
+        navigate('/')
         alert("Logged out successfully!");
     } catch (error) {
-        console.log(formData);
+        // console.log(formData);
         console.error(error.response ? error.response.data : error.message);
         alert("Error!");
     }    
@@ -294,7 +297,7 @@ const DonationForm = () => {
             </button>
 
             <button type="submit">Submit Donation</button>
-            <button onClick={doit}>Logout</button>
+            <button onClick={Doit}>Logout</button>
         </form>
     );
 };

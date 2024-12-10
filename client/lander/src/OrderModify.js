@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate, NavLink } from "react-router-dom";
 
 const OrderModify = () => {
   const [orderID, setOrderID] = useState('');
@@ -31,14 +32,16 @@ const OrderModify = () => {
     }
   };
 
-  function doit() 
+  function Doit() 
 {
+  const navigate = useNavigate();
     try {
-        const response = Axios.post("http://127.0.0.1:5000/api/logout/");
+        const response = axios.post("http://127.0.0.1:5000/api/logout/");
         console.log(response.data);
+        navigate('/')
         alert("Logged out successfully!");
     } catch (error) {
-        console.log(formData);
+        // console.log(formData);
         console.error(error.response ? error.response.data : error.message);
         alert("Error!");
     }    
@@ -46,7 +49,7 @@ const OrderModify = () => {
 
   return (
     <div>
-      <h2>Modify Order</h2>
+      <h2>Enter details</h2>
       <label>Order ID:</label>
       <input type="text" value={orderID} onChange={(e) => setOrderID(e.target.value)} />
       <label>Client ID:</label>
@@ -54,9 +57,9 @@ const OrderModify = () => {
       <label>Item ID:</label>
       <input type="text" value={itemID} onChange={(e) => setItemID(e.target.value)} />
       <button onClick={handleAddItem}>Add Item</button>
-      <button onClick={handleRemoveItem}>Remove Item</button>
+      {/* <button onClick={handleRemoveItem}>Remove Item</button> */}
       <p>{responseMessage}</p>
-      <button onClick={doit}>Logout</button>
+      <button onClick={Doit}>Logout</button>
     </div>
   );
 };

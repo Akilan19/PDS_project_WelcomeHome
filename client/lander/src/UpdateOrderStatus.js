@@ -1,18 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate, NavLink } from "react-router-dom";
 
-function doit() 
-{
-    try {
-        const response = Axios.post("http://127.0.0.1:5000/api/logout/");
-        console.log(response.data);
-        alert("Logged out successfully!");
-    } catch (error) {
-        console.log(formData);
-        console.error(error.response ? error.response.data : error.message);
-        alert("Error!");
-    }    
-}
+
 
 const UpdateOrderStatus = () => {
     const [formData, setFormData] = useState({
@@ -22,6 +12,22 @@ const UpdateOrderStatus = () => {
     });
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+
+    const navigate = useNavigate();
+
+    function Doit() 
+{
+    try {
+        const response = axios.post("http://127.0.0.1:5000/api/logout/");
+        console.log(response.data);
+        navigate('/');
+        alert("Logged out successfully!");
+    } catch (error) {
+        // console.log(formData);
+        console.error(error.response ? error.response.data : error.message);
+        alert("Error!");
+    }    
+}
 
     const handleUpdateStatus = async (e) => {
         e.preventDefault(); // Prevent the form from reloading the page
@@ -101,7 +107,7 @@ const UpdateOrderStatus = () => {
             </form>
             {message && <p>{message}</p>}
             {error && <p>{error}</p>}
-            <button onClick={doit}>Logout</button>
+            <button onClick={Doit}>Logout</button>
         </div>
     );
 };

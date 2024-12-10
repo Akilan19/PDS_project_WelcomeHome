@@ -1,20 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate, NavLink } from "react-router-dom";
 
-function doit() 
-{
-    try {
-        const response = Axios.post("http://127.0.0.1:5000/api/logout/");
-        console.log(response.data);
-        alert("Logged out successfully!");
-    } catch (error) {
-        console.log(formData);
-        console.error(error.response ? error.response.data : error.message);
-        alert("Error!");
-    }    
-}
 
 const PrepareOrder = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         OrderID: "",
         orderNotes: "",
@@ -89,6 +79,25 @@ const PrepareOrder = () => {
         }));
     };
 
+    function Doit() 
+{
+    try {
+        const response = axios.post("http://127.0.0.1:5000/api/logout/");
+        console.log(response.data);
+        navigate('/');
+        alert("Logged out successfully!");
+    } catch (error) {
+        // console.log(formData);
+        console.error(error.response ? error.response.data : error.message);
+        alert("Error!");
+    }    
+}
+
+    function Backop()
+    {
+        navigate("/os")
+    }
+
     return (
         <div>
             <h1>Prepare Order</h1>
@@ -157,7 +166,8 @@ const PrepareOrder = () => {
             <br />
             {message && <p>{message}</p>}
             {error && <p>{error}</p>}
-            <button onClick={doit}>Logout</button>
+            <button onClick={Doit}>Logout</button>
+            <button onClick={Backop}>Go Back</button>
         </div>
     );
 };

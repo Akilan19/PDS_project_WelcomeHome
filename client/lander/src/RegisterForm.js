@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
@@ -12,11 +13,13 @@ const RegisterForm = () => {
         roleID: ""
     });
 
-    function doit() 
+    function Doit() 
 {
+    const navigate = useNavigate();
     try {
-        const response = Axios.post("http://127.0.0.1:5000/api/logout/");
+        const response = axios.post("http://127.0.0.1:5000/api/logout/");
         console.log(response.data);
+        navigate('/');
         alert("Logged out successfully!");
     } catch (error) {
         console.log(formData);
@@ -128,7 +131,7 @@ const RegisterForm = () => {
             </form>
             
             {responseMessage && <p>{responseMessage}</p>}
-            <button onClick={doit}>Logout</button>
+            <button onClick={Doit}>Logout</button>
         </div>
     );
 };

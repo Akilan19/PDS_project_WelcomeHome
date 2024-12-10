@@ -4,27 +4,35 @@ import Inventory from './Inventory';
 import OrderModify from './OrderModify';
 import { useNavigate, NavLink } from "react-router-dom";
 
-function doit() 
+
+function Shopping()
+{
+    const changee1 = async() => {
+        navigate("/PrepareOrder")
+    }
+    
+    function Doit() 
 {
     try {
         const response = Axios.post("http://127.0.0.1:5000/api/logout/");
         console.log(response.data);
+        navigate("/");
         alert("Logged out successfully!");
     } catch (error) {
-        console.log(formData);
+        // console.log(formData);
         console.error(error.response ? error.response.data : error.message);
         alert("Error!");
     }    
 }
-
-function Shopping()
-{
+    const navigate = useNavigate();
     return (
         <div>
             <OrderModify />
             <Inventory />
 
-            <button onClick={doit}>Logout</button>
+            <button onClick={Doit}>Logout</button>
+
+            <button onClick={changee1}>Click to prepare your order</button>
         </div>
     )
 }
