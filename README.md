@@ -1,3 +1,6 @@
-# PDS_Frontend
-# WelcomeHome_Master
-# PDS_project_WelcomeHome
+# PDS Project
+# WelcomeHome
+Team:
+Akilan Yohendiran,
+Sai Akilesh Venigalla,
+Kanishk Aggarwal
