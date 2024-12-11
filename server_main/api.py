@@ -53,6 +53,7 @@ api.add_resource(OrderStatus,'/api/order/status') #POST
 # OTHERS
 api.add_resource(Order,'/api/order/') #GET,POST
 api.add_resource(Person,'/api/person/update/') #Only for developement purpose
+api.add_resource(Dashboard,'/api/dashboard')
 
 @app.route('/')
 def home():

@@ -72,4 +72,39 @@ class VolunteerScoreboard(Resource):
         
         return {"scoreboard":scoreboard},200
 
+class Dashboard(Resource):
+    def get(self):
+        current_user=current_user.get_id()
+        widgets=[]
+        if RoleMappings.isStaff(username=current_user):
+            widgets=[
+                "/Donated",
+                "/OrderMain",
+                "/PrepareOrder",
+                "/UpdateOrderStatus",
+                "/RankSystem",
+                "/UserTasks",
+                "/ItemLocation",
+                "/OrderLocations"
+            ]
+        elif RoleMappings.isVolunteer(username=current_user):
+            widgets=[
+                "/UpdateOrderStatus",
+                "/RankSystem",
+                "/UserTasks",
+                "/ItemLocation",
+                "/OrderLocations"
+            ]
+        elif RoleMappings.isDonor(username=current_user):
+            widgets=[
+                "/RankSystem"
+            ]
+        elif RoleMappings.isClient(username=current_user):
+            widgets=[
+                "/RankSystem"
+            ]
+        else:
+            return {"message":"Unauthorized User/Role. Dashboard Doesnt Exist"},400
+        
+        return {"widgets":widgets},200
         
