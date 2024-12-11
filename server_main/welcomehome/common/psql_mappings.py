@@ -10,7 +10,7 @@ class PredefinedQueries:
     get_person_by_username="SELECT * FROM Person WHERE userName='${userName}';"
     get_role_by_username="SELECT roleID FROM Act WHERE userName='${userName}';"
     get_distinct_itemids_in_itemin="SELECT DISTINCT(ItemID) FROM ItemIn;"
-    get_all_orders_related_to_user="SELECT o.OrderId,orderDate,ordernotes,supervisor,client,username,status AS volunteer, status, date FROM Ordered AS o LEFT JOIN Delivered AS d ON o.OrderID=d.OrderID WHERE supervisor='${username}' OR client='${username}' OR username='${username}';"
+    get_all_orders_related_to_user="SELECT o.OrderId,orderDate,ordernotes,supervisor,client,username AS volunteer, status, date FROM Ordered AS o LEFT JOIN Delivered AS d ON o.OrderID=d.OrderID WHERE supervisor='${username}' OR client='${username}' OR username='${username}';"
     get_role_by_orderid_and_userid="SELECT supervisor,username AS volunteer, status, date FROM Delivered AS d LEFT JOIN Ordered AS o ON o.OrderID=d.OrderID WHERE d.OrderID=${orderID} AND (supervisor='${username}' OR username='${username}');"
 
     get_items_in_order="SELECT ItemID FROM itemin WHERE orderID=${orderID};"
