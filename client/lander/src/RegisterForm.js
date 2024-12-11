@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, NavLink } from "react-router-dom";
 
 const RegisterForm = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -15,17 +16,7 @@ const RegisterForm = () => {
 
     function Doit() 
 {
-    const navigate = useNavigate();
-    try {
-        const response = axios.post("http://127.0.0.1:5000/api/logout/");
-        console.log(response.data);
-        navigate('/');
-        alert("Logged out successfully!");
-    } catch (error) {
-        console.log(formData);
-        console.error(error.response ? error.response.data : error.message);
-        alert("Error!");
-    }    
+    navigate('/')
 }
 
     const [responseMessage, setResponseMessage] = useState("");
@@ -131,7 +122,7 @@ const RegisterForm = () => {
             </form>
             
             {responseMessage && <p>{responseMessage}</p>}
-            <button onClick={Doit}>Logout</button>
+            <button onClick={Doit}>Go Back to Login</button>
         </div>
     );
 };
