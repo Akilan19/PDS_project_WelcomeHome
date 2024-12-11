@@ -20,7 +20,7 @@ function OrderMain() {
         catch(error)
         {
             if (error.response) {
-                console.log(error.response.data.message); 
+                alert(error.response.data.message); 
             } else {
                 console.log("An error occurred!");
             }

@@ -49,7 +49,7 @@ const ItemLocations = () => {
 
     return (
         <div style={{ margin: "20px" }}>
-            <h1>Find Item Locations</h1>
+            <h1>Find Item Locations according to the OrderID:</h1>
             <form onSubmit={fetchLocations}>
                 <input
                     type="text"
@@ -67,7 +67,7 @@ const ItemLocations = () => {
 
             {locations.length > 0 && (
                 <div style={{ marginTop: "20px" }}>
-                    <h2>Item Locations</h2>
+                    <h2>Item Locations according to the OrderID:</h2>
                     <table border="1" cellPadding="10">
                         <thead>
                             <tr>

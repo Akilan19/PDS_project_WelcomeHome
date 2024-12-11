@@ -77,36 +77,36 @@ class VolunteerScoreboard(Resource):
 
 class Dashboard(Resource):
     def get(self):
-        current_user=current_user.get_id()
+        current_userid=current_user.get_id()
         widgets=[]
-        if RoleMappings.isStaff(username=current_user):
+        if RoleMappings.isStaff(username=current_userid):
             widgets=[
-                "/Donated",
-                "/OrderMain",
-                "/PrepareOrder",
-                "/UpdateOrderStatus",
-                "/RankSystem",
-                "/UserTasks",
-                "/ItemLocation",
-                "/OrderLocations"
+                { "label": "Click here to Donate", "path": "/Donated" },
+                { "label": "Click to start your order", "path": "/OrderMain" },
+                { "label": "Click to prepare your order", "path": "/PrepareOrder" },
+                { "label": "Click here to Update the status of order", "path": "/UpdateOrderStatus" },
+                { "label": "Click here to display ranking", "path": "/RankSystem" },
+                { "label": "Click here to display current orders", "path": "/UserTasks" },
+                { "label": "Click here to View Location of Pieces by ItemID", "path": "/ItemLocation" },
+                { "label": "Click here to View Location of Pieces by OrderID", "path": "/OrderLocations" }
             ]
-        elif RoleMappings.isVolunteer(username=current_user):
+        elif RoleMappings.isVolunteer(username=current_userid):
             widgets=[
-                "/UpdateOrderStatus",
-                "/RankSystem",
-                "/UserTasks",
-                "/ItemLocation",
-                "/OrderLocations"
+                { "label": "Click here to Update the status of order", "path": "/UpdateOrderStatus" },
+                { "label": "Click here to display ranking", "path": "/RankSystem" },
+                { "label": "Click here to display current orders", "path": "/UserTasks" },
+                { "label": "Click here to View Location of Pieces by ItemID", "path": "/ItemLocation" },
+                { "label": "Click here to View Location of Pieces by OrderID", "path": "/OrderLocations" }
             ]
-        elif RoleMappings.isDonor(username=current_user):
+        elif RoleMappings.isDonor(username=current_userid):
             widgets=[
-                "/RankSystem",
-                "/UserTasks"
+                { "label": "Click here to display ranking", "path": "/RankSystem" },
+                { "label": "Click here to display current orders", "path": "/UserTasks" },
             ]
-        elif RoleMappings.isClient(username=current_user):
+        elif RoleMappings.isClient(username=current_userid):
             widgets=[
-                "/RankSystem",
-                "/UserTasks"
+                { "label": "Click here to display ranking", "path": "/RankSystem" },
+                { "label": "Click here to display current orders", "path": "/UserTasks" },
             ]
         else:
             return {"message":"Unauthorized User/Role. Dashboard Doesnt Exist"},400

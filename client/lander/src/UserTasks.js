@@ -47,6 +47,7 @@ const UserTasks = () => {
                 <div key={order.orderid} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
                     <h3>Order ID: {order.orderid}</h3>
                     <p>Role: {order.role}</p>
+                    <p>Details: {order.detailed_info}</p>
                 </div>
             ))
         )}
