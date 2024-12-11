@@ -22,10 +22,13 @@ class PersonOrders(Resource):
                 order["orderid"]=row.orderid
                 if row.volunteer==current_userid:
                     order["role"]="delivery"
+                    order["detailed_info"]=f"Need to Deliver this Order or Update Status, Current Status: {row.status}"
                 if row.supervisor==current_userid:
                     order["role"]="supervisor"
+                    order["detailed_info"]=f"Currently Supervising Order: {row.orderid}"
                 if row.client==current_userid:
                     order["role"]="client"
+                    order["detailed_info"]=f"You have placed this order: {row.orderid}, Status:{row.status}"
                 order_details.append(order)
         except Exception as e:
             return {"message":f"There was an Error while fetching order for userid:{current_userid}: {str(e)}"},400
@@ -97,11 +100,13 @@ class Dashboard(Resource):
             ]
         elif RoleMappings.isDonor(username=current_user):
             widgets=[
-                "/RankSystem"
+                "/RankSystem",
+                "/UserTasks"
             ]
         elif RoleMappings.isClient(username=current_user):
             widgets=[
-                "/RankSystem"
+                "/RankSystem",
+                "/UserTasks"
             ]
         else:
             return {"message":"Unauthorized User/Role. Dashboard Doesnt Exist"},400
